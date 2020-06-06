@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b13247635a94540a574076b30de64e92",
+    "revision": "48b339fbcc88b4c2d1d47c54e0dca2f5",
     "url": "/ss2-planner/index.html"
   },
   {
