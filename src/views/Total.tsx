@@ -33,5 +33,14 @@ export function Total() {
       }, 0)
     );
   }, [tiers, difficulty, stats, weapons, techs]);
-  return <div>{total}</div>;
+  return (
+    <div
+      style={{ display: 'grid', alignItems: 'center', justifyContent: 'space-around', gridTemplateColumns: '10% 2%' }}
+    >
+      <span>
+        <h2>Total</h2>
+      </span>
+      <span>{total}</span>
+    </div>
+  );
 }

@@ -9,13 +9,19 @@ export function Difficulty() {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      {difficulty}
-      {Object.entries(Values).map(([k, v]) => (
-        <button key={k} onClick={() => dispatch(Slice.actions.setDifficulty(v))}>
-          {v}
-        </button>
-      ))}
+    <div style={{ display: 'grid', alignItems: 'center', justifyContent: 'space-around' }}>
+      <h2 style={{ gridColumn: 1 }}>Difficulty</h2>
+      <select
+        style={{ gridColumn: 2 }}
+        onChange={(e) => dispatch(Slice.actions.setDifficulty(e.target.value as Values))}
+      >
+        {' '}
+        {Object.entries(Values).map(([k, v]) => (
+          <option key={k} value={v} selected={difficulty === v}>
+            {v}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Breakpoints } from './views/Breakpoints';
+// import { Breakpoints } from './views/Breakpoints';
 import { PsiGrid } from './views/PsiGrid';
 import { Difficulty } from './views/Difficulty';
 import { Total } from './views/Total';
@@ -13,11 +13,13 @@ function App() {
     <div>
       <Total />
       <Difficulty />
-      <Stats />
-      <Weapons />
-      <Techs />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', margin: '0 12px' }}>
+        <Stats />
+        <Weapons />
+        <Techs />
+      </div>
       <PsiGrid />
-      <Breakpoints />
+      {/*<Breakpoints />*/}
     </div>
   );
 }

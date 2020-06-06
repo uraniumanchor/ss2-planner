@@ -11,34 +11,62 @@ export function PsiGrid() {
   const difficulty = useSelector((state: StoreState) => state.difficulty);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div
+      style={{
+        display: 'grid',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gap: '12px',
+        margin: '0 12px',
+      }}
+    >
       {tiers.map((tier, i) => (
-        <div key={i}>
-          <h2>Tier {i + 1}</h2>
-          <div>
-            <label>
-              {tier.enabled ? (
-                <button onClick={() => dispatch(PsiTiers.actions.deactivateTier(i))}>Disable</button>
-              ) : (
-                <button onClick={() => dispatch(PsiTiers.actions.activateTier(i))}>Enable</button>
-              )}
-              {PsiTierCosts[difficulty][i]}
-            </label>
-          </div>
+        <div
+          key={i}
+          style={{
+            display: 'grid',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            gridTemplateColumns: '8fr 2fr 1fr',
+            gap: '4px',
+          }}
+        >
+          <span>
+            <h2>Tier {i + 1}</h2>
+          </span>
+          <span>
+            <input
+              type={'checkbox'}
+              checked={tier.enabled}
+              onChange={(e) =>
+                dispatch(e.target.checked ? PsiTiers.actions.activateTier(i) : PsiTiers.actions.deactivateTier(i))
+              }
+            />
+          </span>
+          <span>{PsiTierCosts[difficulty][i]}</span>
+          <span>Name</span>
+          <span>Active</span>
+          <span>Cost</span>
           {PsiAbilityNames[i].map((name) => (
-            <div key={name}>
-              {name}
-              <label>
-                {tier.abilities.includes(name) ? (
-                  <button onClick={() => dispatch(PsiTiers.actions.deactivateAbility(name))}>Disable</button>
-                ) : (
-                  <button disabled={!tier.enabled} onClick={() => dispatch(PsiTiers.actions.activateAbility(name))}>
-                    Enable
-                  </button>
-                )}
-                {PsiAbilityCosts[difficulty][i]}
-              </label>
-            </div>
+            <React.Fragment key={name}>
+              <span>{name}</span>
+              <span>
+                {' '}
+                <input
+                  type={'checkbox'}
+                  checked={tier.abilities.includes(name)}
+                  onChange={(e) =>
+                    dispatch(
+                      e.target.checked
+                        ? PsiTiers.actions.activateAbility(name)
+                        : PsiTiers.actions.deactivateAbility(name)
+                    )
+                  }
+                />
+              </span>
+              <span> {PsiAbilityCosts[difficulty][i]}</span>
+            </React.Fragment>
           ))}
         </div>
       ))}
