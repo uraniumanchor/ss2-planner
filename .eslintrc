@@ -16,7 +16,8 @@
   },
   "parser": "babel-eslint",
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -60,7 +61,8 @@
         "varsIgnorePattern": "^React$|^_|^PropTypes$"
       }
     ],
-    "react/prop-types": 1,
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 2,
     "eqeqeq": [
       2,
       "smart"

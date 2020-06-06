@@ -28,7 +28,7 @@ export function Total() {
         }
         return total;
       }, 0),
-    [jobTraits]
+    [jobTraits, difficulty]
   );
   const psiCosts = useMemo(
     () =>
@@ -39,7 +39,7 @@ export function Total() {
           tier.abilities.length * PsiAbilityCosts[difficulty][i],
         0
       ),
-    [tiers]
+    [tiers, difficulty]
   );
   const statCosts = useMemo(
     () =>
@@ -47,7 +47,7 @@ export function Total() {
         (total, stat) => total + StatCosts[difficulty].slice(0, stat - 1).reduce((t, c) => t + c, 0),
         0
       ),
-    [stats]
+    [stats, difficulty]
   );
   const weaponCosts = useMemo(
     () =>
@@ -55,7 +55,7 @@ export function Total() {
         (total, weapon) => total + WeaponCosts[difficulty].slice(0, weapon).reduce((t, c) => t + c, 0),
         0
       ),
-    [weapons]
+    [weapons, difficulty]
   );
   const techCosts = useMemo(
     () =>
@@ -63,7 +63,7 @@ export function Total() {
         (total, tech) => total + TechCosts[difficulty].slice(0, tech).reduce((t, c) => t + c, 0),
         0
       ),
-    [techs]
+    [techs, difficulty]
   );
   return (
     <div
