@@ -2,6 +2,7 @@
   "name": "ss2_planner",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://uraniumanchor.github.io/ss2-planner/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.3.6",
     "react": "^16.13.1",
@@ -12,6 +13,8 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "fix:prettier": "prettier --write \"src/**\"",
     "fix:lint": "yarn lint --fix",
     "fix:all": "yarn fix:prettier && yarn fix:lint",
