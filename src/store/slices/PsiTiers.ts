@@ -27,7 +27,7 @@ export const PsiTiers = createSlice({
       if (tier === -1) {
         throw new Error(`could not find ability named "${payload}`);
       }
-      if (state[tier].enabled && !state[tier].abilities.includes(payload)) {
+      if (!state[tier].abilities.includes(payload)) {
         state[tier].abilities.push(payload);
       }
     },

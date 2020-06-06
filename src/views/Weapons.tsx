@@ -28,7 +28,7 @@ export function WeaponLine({ weapon, value }: { weapon: Values; value: number })
 export function Weapons() {
   const weapons = useSelector((state: StoreState) => state.weapons);
   return (
-    <div style={{ display: 'grid', alignItems: 'center', justifyContent: 'space-around' }}>
+    <div style={{ display: 'grid', alignItems: 'center', justifyContent: 'space-around', gap: 4 }}>
       <h2>Weapons</h2>
       <span style={{ gridColumn: 1 }}>Skill</span>
       <span style={{ gridColumn: 2 }}>Level</span>

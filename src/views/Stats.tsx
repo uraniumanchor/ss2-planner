@@ -34,6 +34,7 @@ export function Stats() {
         alignItems: 'center',
         justifyContent: 'space-around',
         gridTemplateColumns: '4fr 2fr 1fr',
+        gap: 4,
       }}
     >
       <h2 style={{ gridColumn: '1 / 4' }}>Stats</h2>

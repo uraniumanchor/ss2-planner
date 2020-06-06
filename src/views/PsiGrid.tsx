@@ -17,7 +17,7 @@ export function PsiGrid() {
         alignItems: 'center',
         justifyContent: 'space-around',
         gridTemplateColumns: 'repeat(5, 1fr)',
-        gap: '12px',
+        gap: 12,
         margin: '0 12px',
       }}
     >
@@ -29,7 +29,7 @@ export function PsiGrid() {
             alignItems: 'center',
             justifyContent: 'space-around',
             gridTemplateColumns: '8fr 2fr 1fr',
-            gap: '4px',
+            gap: 4,
           }}
         >
           <span>
@@ -37,7 +37,7 @@ export function PsiGrid() {
           </span>
           <span>
             <input
-              type={'checkbox'}
+              type='checkbox'
               checked={tier.enabled}
               onChange={(e) =>
                 dispatch(e.target.checked ? PsiTiers.actions.activateTier(i) : PsiTiers.actions.deactivateTier(i))
@@ -56,6 +56,7 @@ export function PsiGrid() {
                 <input
                   type={'checkbox'}
                   checked={tier.abilities.includes(name)}
+                  disabled={!tier.enabled}
                   onChange={(e) =>
                     dispatch(
                       e.target.checked

@@ -6,6 +6,7 @@ import { PsiAbilityCosts } from '../constants/PsiAbilityCosts';
 import { StatCosts } from '../constants/StatCosts';
 import { WeaponCosts } from '../constants/WeaponCosts';
 import { TechCosts } from '../constants/TechCosts';
+import { JobTraitGroups } from '../lib/JobTraitGroups';
 
 export function Total() {
   const difficulty = useSelector((state: StoreState) => state.difficulty);
@@ -13,34 +14,71 @@ export function Total() {
   const weapons = useSelector((state: StoreState) => state.weapons);
   const tiers = useSelector((state: StoreState) => state.tiers);
   const techs = useSelector((state: StoreState) => state.techs);
-  const total = useMemo(() => {
-    return (
+  const jobTraits = useSelector((state: StoreState) => state.jobTraits);
+  const discount = useMemo(
+    () =>
+      jobTraits.traits.reduce((total, traitLabel, i) => {
+        if (traitLabel) {
+          const trait = JobTraitGroups[jobTraits.job][i].find((trait) => trait.label === traitLabel);
+          if (trait) {
+            total -= trait.costMod(difficulty);
+          } else {
+            console.warn(`sanity check: trait "${traitLabel}" did not exist for ${jobTraits.job} in year ${i}`);
+          }
+        }
+        return total;
+      }, 0),
+    [jobTraits]
+  );
+  const psiCosts = useMemo(
+    () =>
       tiers.reduce(
         (total, tier, i) =>
           total +
           (tier.enabled ? PsiTierCosts[difficulty][i] : 0) +
           tier.abilities.length * PsiAbilityCosts[difficulty][i],
         0
-      ) +
-      Object.values(stats).reduce((total, stat) => {
-        return total + StatCosts[difficulty].slice(0, stat - 1).reduce((t, c) => t + c, 0);
-      }, 0) +
-      Object.values(weapons).reduce((total, weapon) => {
-        return total + WeaponCosts[difficulty].slice(0, weapon).reduce((t, c) => t + c, 0);
-      }, 0) +
-      Object.values(techs).reduce((total, tech) => {
-        return total + TechCosts[difficulty].slice(0, tech).reduce((t, c) => t + c, 0);
-      }, 0)
-    );
-  }, [tiers, difficulty, stats, weapons, techs]);
+      ),
+    [tiers]
+  );
+  const statCosts = useMemo(
+    () =>
+      Object.values(stats).reduce(
+        (total, stat) => total + StatCosts[difficulty].slice(0, stat - 1).reduce((t, c) => t + c, 0),
+        0
+      ),
+    [stats]
+  );
+  const weaponCosts = useMemo(
+    () =>
+      Object.values(weapons).reduce(
+        (total, weapon) => total + WeaponCosts[difficulty].slice(0, weapon).reduce((t, c) => t + c, 0),
+        0
+      ),
+    [weapons]
+  );
+  const techCosts = useMemo(
+    () =>
+      Object.values(techs).reduce(
+        (total, tech) => total + TechCosts[difficulty].slice(0, tech).reduce((t, c) => t + c, 0),
+        0
+      ),
+    [techs]
+  );
   return (
     <div
-      style={{ display: 'grid', alignItems: 'center', justifyContent: 'space-around', gridTemplateColumns: '10% 2%' }}
+      style={{
+        display: 'grid',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        gridTemplateColumns: '2fr 1fr',
+        gap: 4,
+      }}
     >
       <span>
         <h2>Total</h2>
       </span>
-      <span>{total}</span>
+      <span>{discount + psiCosts + statCosts + weaponCosts + techCosts}</span>
     </div>
   );
 }

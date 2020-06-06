@@ -9,19 +9,30 @@ export function Difficulty() {
   const dispatch = useDispatch();
 
   return (
-    <div style={{ display: 'grid', alignItems: 'center', justifyContent: 'space-around' }}>
-      <h2 style={{ gridColumn: 1 }}>Difficulty</h2>
-      <select
-        style={{ gridColumn: 2 }}
-        onChange={(e) => dispatch(Slice.actions.setDifficulty(e.target.value as Values))}
-      >
-        {' '}
-        {Object.entries(Values).map(([k, v]) => (
-          <option key={k} value={v} selected={difficulty === v}>
-            {v}
-          </option>
-        ))}
-      </select>
+    <div
+      style={{
+        display: 'grid',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        gridTemplateColumns: '2fr 1fr',
+        gap: 4,
+      }}
+    >
+      <span>
+        <h2>Difficulty</h2>
+      </span>
+      <span>
+        <select
+          onChange={(e) => dispatch(Slice.actions.setDifficulty(e.target.value as Values))}
+          defaultValue={difficulty}
+        >
+          {Object.entries(Values).map(([k, v]) => (
+            <option key={k} value={v}>
+              {v}
+            </option>
+          ))}
+        </select>
+      </span>
     </div>
   );
 }
