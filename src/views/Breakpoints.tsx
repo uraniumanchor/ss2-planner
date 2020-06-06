@@ -16,14 +16,8 @@ export function Breakpoints() {
           <button onClick={() => dispatch(Slice.actions.remove(b))}>-</button>
         </div>
       ))}
-      <input
-        value={breakpointToAdd}
-        onChange={(e) => setBreakpointToAdd(+e.target.value)}
-        type="number"
-      />
-      <button onClick={() => dispatch(Slice.actions.add(breakpointToAdd))}>
-        Add
-      </button>
+      <input value={breakpointToAdd} onChange={(e) => setBreakpointToAdd(+e.target.value)} type='number' />
+      <button onClick={() => dispatch(Slice.actions.add(breakpointToAdd))}>Add</button>
     </>
   );
 }

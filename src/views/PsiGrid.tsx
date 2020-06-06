@@ -18,17 +18,9 @@ export function PsiGrid() {
           <div>
             <label>
               {tier.enabled ? (
-                <button
-                  onClick={() => dispatch(PsiTiers.actions.deactivateTier(i))}
-                >
-                  Disable
-                </button>
+                <button onClick={() => dispatch(PsiTiers.actions.deactivateTier(i))}>Disable</button>
               ) : (
-                <button
-                  onClick={() => dispatch(PsiTiers.actions.activateTier(i))}
-                >
-                  Enable
-                </button>
+                <button onClick={() => dispatch(PsiTiers.actions.activateTier(i))}>Enable</button>
               )}
               {PsiTierCosts[difficulty][i]}
             </label>
@@ -38,20 +30,9 @@ export function PsiGrid() {
               {name}
               <label>
                 {tier.abilities.includes(name) ? (
-                  <button
-                    onClick={() =>
-                      dispatch(PsiTiers.actions.deactivateAbility(name))
-                    }
-                  >
-                    Disable
-                  </button>
+                  <button onClick={() => dispatch(PsiTiers.actions.deactivateAbility(name))}>Disable</button>
                 ) : (
-                  <button
-                    disabled={!tier.enabled}
-                    onClick={() =>
-                      dispatch(PsiTiers.actions.activateAbility(name))
-                    }
-                  >
+                  <button disabled={!tier.enabled} onClick={() => dispatch(PsiTiers.actions.activateAbility(name))}>
                     Enable
                   </button>
                 )}

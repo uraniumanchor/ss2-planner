@@ -11,12 +11,7 @@ export const Techs = createSlice({
     [Values.RESEARCH]: 0,
   },
   reducers: {
-    setTech: (
-      state,
-      {
-        payload: { tech, value },
-      }: PayloadAction<{ tech: Values; value: number }>
-    ) => {
+    setTech: (state, { payload: { tech, value } }: PayloadAction<{ tech: Values; value: number }>) => {
       state[tech] = Math.floor(Math.max(0, Math.min(6, value)));
     },
   },

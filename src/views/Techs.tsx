@@ -16,17 +16,11 @@ export function TechLine({ tech, value }: { tech: Values; value: number }) {
           value={value}
           min={0}
           max={6}
-          type="number"
-          onChange={(e) =>
-            dispatch(
-              Slice.actions.setTech({ tech: tech, value: +e.target.value })
-            )
-          }
+          type='number'
+          onChange={(e) => dispatch(Slice.actions.setTech({ tech: tech, value: +e.target.value }))}
         />
       </span>
-      <span style={{ gridColumn: 3 }}>
-        {value !== 6 ? TechCosts[difficulty][value] : 'max'}
-      </span>
+      <span style={{ gridColumn: 3 }}>{value !== 6 ? TechCosts[difficulty][value] : 'max'}</span>
     </>
   );
 }

@@ -12,10 +12,7 @@ export function Difficulty() {
     <div>
       {difficulty}
       {Object.entries(Values).map(([k, v]) => (
-        <button
-          key={k}
-          onClick={() => dispatch(Slice.actions.setDifficulty(v))}
-        >
+        <button key={k} onClick={() => dispatch(Slice.actions.setDifficulty(v))}>
           {v}
         </button>
       ))}

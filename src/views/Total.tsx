@@ -23,22 +23,13 @@ export function Total() {
         0
       ) +
       Object.values(stats).reduce((total, stat) => {
-        return (
-          total +
-          StatCosts[difficulty].slice(0, stat - 1).reduce((t, c) => t + c, 0)
-        );
+        return total + StatCosts[difficulty].slice(0, stat - 1).reduce((t, c) => t + c, 0);
       }, 0) +
       Object.values(weapons).reduce((total, weapon) => {
-        return (
-          total +
-          WeaponCosts[difficulty].slice(0, weapon).reduce((t, c) => t + c, 0)
-        );
+        return total + WeaponCosts[difficulty].slice(0, weapon).reduce((t, c) => t + c, 0);
       }, 0) +
       Object.values(techs).reduce((total, tech) => {
-        return (
-          total +
-          TechCosts[difficulty].slice(0, tech).reduce((t, c) => t + c, 0)
-        );
+        return total + TechCosts[difficulty].slice(0, tech).reduce((t, c) => t + c, 0);
       }, 0)
     );
   }, [tiers, difficulty, stats, weapons, techs]);

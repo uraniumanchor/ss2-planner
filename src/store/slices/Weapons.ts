@@ -10,12 +10,7 @@ export const Weapons = createSlice({
     [Values.EXOTIC]: 0,
   },
   reducers: {
-    setWeapon: (
-      state,
-      {
-        payload: { weapon, value },
-      }: PayloadAction<{ weapon: Values; value: number }>
-    ) => {
+    setWeapon: (state, { payload: { weapon, value } }: PayloadAction<{ weapon: Values; value: number }>) => {
       state[weapon] = Math.floor(Math.max(0, Math.min(6, value)));
     },
   },

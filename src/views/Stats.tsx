@@ -16,15 +16,11 @@ export function StatLine({ stat, value }: { stat: Values; value: number }) {
           value={value}
           min={1}
           max={6}
-          type="number"
-          onChange={(e) =>
-            dispatch(Slice.actions.setStat({ stat, value: +e.target.value }))
-          }
+          type='number'
+          onChange={(e) => dispatch(Slice.actions.setStat({ stat, value: +e.target.value }))}
         />
       </span>
-      <span style={{ gridColumn: 3 }}>
-        {value !== 6 ? StatCosts[difficulty][value - 1] : 'max'}
-      </span>
+      <span style={{ gridColumn: 3 }}>{value !== 6 ? StatCosts[difficulty][value - 1] : 'max'}</span>
     </>
   );
 }

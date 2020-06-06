@@ -11,12 +11,7 @@ export const Stats = createSlice({
     [Values.CYBER]: 1,
   },
   reducers: {
-    setStat: (
-      state,
-      {
-        payload: { stat, value },
-      }: PayloadAction<{ stat: Values; value: number }>
-    ) => {
+    setStat: (state, { payload: { stat, value } }: PayloadAction<{ stat: Values; value: number }>) => {
       state[stat] = Math.floor(Math.max(1, Math.min(6, value)));
     },
   },

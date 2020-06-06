@@ -9,10 +9,7 @@ export const Breakpoints = createSlice({
   initialState: [] as number[],
   reducers: {
     add: (state, action: PayloadAction<number>) =>
-      state.includes(action.payload)
-        ? state
-        : state.concat(action.payload).sort(s),
-    remove: (state, action: PayloadAction<number>) =>
-      state.filter((b) => b !== action.payload),
+      state.includes(action.payload) ? state : state.concat(action.payload).sort(s),
+    remove: (state, action: PayloadAction<number>) => state.filter((b) => b !== action.payload),
   },
 });

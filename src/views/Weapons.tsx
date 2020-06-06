@@ -5,13 +5,7 @@ import { Weapons as Values } from '../constants/Weapons';
 import { Weapons as Slice } from '../store/slices/Weapons';
 import { WeaponCosts } from '../constants/WeaponCosts';
 
-export function WeaponLine({
-  weapon,
-  value,
-}: {
-  weapon: Values;
-  value: number;
-}) {
+export function WeaponLine({ weapon, value }: { weapon: Values; value: number }) {
   const dispatch = useDispatch();
   const difficulty = useSelector((state: StoreState) => state.difficulty);
   return (
@@ -22,17 +16,11 @@ export function WeaponLine({
           value={value}
           min={0}
           max={6}
-          type="number"
-          onChange={(e) =>
-            dispatch(
-              Slice.actions.setWeapon({ weapon, value: +e.target.value })
-            )
-          }
+          type='number'
+          onChange={(e) => dispatch(Slice.actions.setWeapon({ weapon, value: +e.target.value }))}
         />
       </span>
-      <span style={{ gridColumn: 3 }}>
-        {value !== 6 ? WeaponCosts[difficulty][value] : 'max'}
-      </span>
+      <span style={{ gridColumn: 3 }}>{value !== 6 ? WeaponCosts[difficulty][value] : 'max'}</span>
     </>
   );
 }
